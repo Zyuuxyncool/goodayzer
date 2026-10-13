@@ -814,13 +814,14 @@ h2 {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
-  padding: 24px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: var(--shadow-subtle);
   position: relative;
   cursor: pointer;
+  overflow: hidden;
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
@@ -832,6 +833,51 @@ h2 {
 
 .item-menu[hidden] {
   display: none !important;
+}
+
+.item-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.item-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.item-menu:hover .item-foto {
+  transform: scale(1.05);
+}
+
+.badge-favorit-foto {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(28, 21, 18, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--amber-200);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(242, 213, 177, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 2;
+}
+
+.item-isi {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 16px;
 }
 
 .item-header {
@@ -986,8 +1032,22 @@ dialog.modal-menu::backdrop {
   -webkit-backdrop-filter: blur(6px);
 }
 
+.modal-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.modal-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .modal-content {
-  padding: 28px;
+  padding: 24px 28px 28px;
 }
 
 .modal-top {
@@ -1584,7 +1644,11 @@ footer .logo-icon {
   }
 
   .item-menu {
-    padding: 20px 18px;
+    padding: 0;
+  }
+
+  .item-isi {
+    padding: 16px 18px 18px;
   }
 
   .card-info-kontak,

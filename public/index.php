@@ -256,25 +256,38 @@ foreach ($menu as $item) {
                      data-harga="<?= (int)$item['harga'] ?>"
                      data-harga-format="<?= e(rupiah($item['harga'])) ?>"
                      data-deskripsi="<?= e($item['deskripsi']) ?>"
+                     data-gambar="<?= !empty($item['gambar']) ? e($item['gambar']) : '' ?>"
                      data-favorit="<?= !empty($item['favorit']) ? 'true' : 'false' ?>">
-              <div>
-                <div class="item-header">
-                  <h3><?= e($item['nama']) ?></h3>
-                  <span class="item-harga"><?= rupiah($item['harga']) ?></span>
-                </div>
-                <p class="item-deskripsi"><?= e($item['deskripsi']) ?></p>
-              </div>
-
-              <div class="item-meta">
-                <div class="item-tags">
-                  <span class="tag-kategori"><?= e($item['kategori']) ?></span>
+              
+              <?php if (!empty($item['gambar'])): ?>
+                <div class="item-visual">
+                  <img class="item-foto" src="<?= e($item['gambar']) ?>" alt="<?= e($item['nama']) ?>" loading="lazy" width="360" height="270">
                   <?php if (!empty($item['favorit'])): ?>
-                    <span class="tag-favorit">Andalan</span>
+                    <span class="badge-favorit-foto">★ Andalan</span>
                   <?php endif; ?>
                 </div>
-                <button type="button" class="btn-detail-item" aria-label="Detail dan pesan <?= e($item['nama']) ?>">
-                  Detail & Pesan
-                </button>
+              <?php endif; ?>
+
+              <div class="item-isi">
+                <div>
+                  <div class="item-header">
+                    <h3><?= e($item['nama']) ?></h3>
+                    <span class="item-harga"><?= rupiah($item['harga']) ?></span>
+                  </div>
+                  <p class="item-deskripsi"><?= e($item['deskripsi']) ?></p>
+                </div>
+
+                <div class="item-meta">
+                  <div class="item-tags">
+                    <span class="tag-kategori"><?= e($item['kategori']) ?></span>
+                    <?php if (!empty($item['favorit']) && empty($item['gambar'])): ?>
+                      <span class="tag-favorit">Andalan</span>
+                    <?php endif; ?>
+                  </div>
+                  <button type="button" class="btn-detail-item" aria-label="Detail dan pesan <?= e($item['nama']) ?>">
+                    Detail & Pesan
+                  </button>
+                </div>
               </div>
             </article>
           <?php endforeach; ?>
@@ -298,6 +311,9 @@ foreach ($menu as $item) {
 
     <!-- Modal Dialog Detail Menu & Pesan via WhatsApp (Native <dialog>) -->
     <dialog id="dialog-detail-menu" class="modal-menu" aria-labelledby="modal-judul-menu">
+      <div id="modal-visual-wadah" class="modal-visual" style="display:none;">
+        <img id="modal-foto-menu" class="modal-foto" src="" alt="" loading="lazy">
+      </div>
       <div class="modal-content">
         <div class="modal-top">
           <div>
@@ -730,7 +746,8 @@ foreach ($menu as $item) {
         terapkanFilter();
       });
 
-      // 4. Modal Dialog Detail Menu & WhatsApp Quick Ordering
+      const modalVisualWadah = document.getElementById('modal-visual-wadah');
+      const modalFoto = document.getElementById('modal-foto-menu');
       const dialogMenu = document.getElementById('dialog-detail-menu');
       const btnTutupDialog = document.getElementById('btn-tutup-dialog');
       const modalJudul = document.getElementById('modal-judul-menu');
@@ -773,13 +790,24 @@ foreach ($menu as $item) {
           nama: kartu.dataset.nama,
           hargaFormat: kartu.dataset.hargaFormat,
           kategori: kartu.dataset.kategori,
-          deskripsi: kartu.dataset.deskripsi
+          deskripsi: kartu.dataset.deskripsi,
+          gambar: kartu.dataset.gambar || ''
         };
 
         modalJudul.textContent = itemAktif.nama;
         modalTagKategori.textContent = itemAktif.kategori;
         modalHarga.textContent = itemAktif.hargaFormat;
         modalDeskripsi.textContent = itemAktif.deskripsi;
+
+        if (modalVisualWadah && modalFoto) {
+          if (itemAktif.gambar) {
+            modalFoto.src = itemAktif.gambar;
+            modalFoto.alt = itemAktif.nama;
+            modalVisualWadah.style.display = 'block';
+          } else {
+            modalVisualWadah.style.display = 'none';
+          }
+        }
 
         // Tampilkan pilihan suhu hanya untuk kategori minuman
         if (itemAktif.kategori === 'camilan') {
