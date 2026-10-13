@@ -1104,8 +1104,12 @@ dialog.modal-menu::backdrop {
   background: var(--bg-page);
   border-radius: var(--radius-md);
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   border: 1px solid var(--border-subtle);
+}
+
+.modal-opsi:last-of-type {
+  margin-bottom: 24px;
 }
 
 .modal-opsi-label {
@@ -1140,6 +1144,81 @@ dialog.modal-menu::backdrop {
   background: var(--amber-100);
   border-color: var(--amber-500);
   color: var(--amber-700);
+}
+
+/* Quantity / Stepper Selector */
+.modal-jumlah-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-subtotal {
+  font-family: var(--font-isi);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--amber-600);
+}
+
+.stepper-jumlah {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-stepper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-card);
+  background: var(--bg-card);
+  color: var(--espresso-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.btn-stepper:hover:not(:disabled) {
+  background: var(--amber-100);
+  border-color: var(--amber-500);
+  color: var(--amber-700);
+}
+
+.btn-stepper:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.input-jumlah {
+  flex: 1;
+  height: 44px;
+  text-align: center;
+  font-family: var(--font-isi);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--espresso-950);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 0 10px;
+  outline: none;
+  -moz-appearance: textfield;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input-jumlah::-webkit-outer-spin-button,
+.input-jumlah::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-jumlah:focus {
+  border-color: var(--amber-500);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
 }
 
 .modal-aksi {

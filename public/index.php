@@ -119,7 +119,7 @@ foreach ($menu as $item) {
 
       <div class="mobile-drawer-aksi">
         <a class="tombol sm" href="#menu">Lihat Menu</a>
-        <a class="tombol sm garis" href="https://wa.me/6281200000000" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="tombol sm garis" href="https://wa.me/6288230634150" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
 
       <div class="mobile-drawer-footer">
@@ -340,12 +340,34 @@ foreach ($menu as $item) {
           </div>
         </div>
 
+        <!-- Input Jumlah Pesanan -->
+        <div class="modal-opsi" id="modal-opsi-jumlah-wadah">
+          <div class="modal-jumlah-header">
+            <label for="input-jumlah-pesanan" class="modal-opsi-label" style="margin-bottom: 0;">Jumlah Pesanan:</label>
+            <span id="modal-subtotal-teks" class="modal-subtotal">Total: Rp 0</span>
+          </div>
+          <div class="stepper-jumlah">
+            <button type="button" class="btn-stepper" id="btn-kurang-jumlah" aria-label="Kurangi jumlah porsi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+            <input type="number" id="input-jumlah-pesanan" class="input-jumlah" value="1" min="1" max="99" step="1" inputmode="numeric" aria-label="Jumlah pesanan">
+            <button type="button" class="btn-stepper" id="btn-tambah-jumlah" aria-label="Tambah jumlah porsi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
         <div class="modal-aksi">
           <a id="btn-wa-pesan" class="tombol" href="#" target="_blank" rel="noopener noreferrer">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
             </svg>
-            <span>Pesan via WhatsApp</span>
+            <span id="btn-wa-pesan-label">Pesan via WhatsApp</span>
           </a>
         </div>
       </div>
@@ -477,7 +499,7 @@ foreach ($menu as $item) {
               </a>
             </li>
             <li>
-              <a class="kontak-item-link" href="https://wa.me/6281200000000?text=Halo%20Goodayzer,%20saya%20ingin%20bertanya%20seputar%20menu%20dan%20reservasi." target="_blank" rel="noopener noreferrer">
+              <a class="kontak-item-link" href="https://wa.me/6288230634150?text=Halo%20Goodayzer,%20saya%20ingin%20bertanya%20seputar%20menu%20dan%20reservasi." target="_blank" rel="noopener noreferrer">
                 <div class="kontak-icon" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
@@ -485,7 +507,7 @@ foreach ($menu as $item) {
                 </div>
                 <div class="kontak-teks">
                   <strong>WhatsApp Resmi</strong>
-                  <span>0812-0000-0000 (Layanan cepat)</span>
+                  <span>0882-3063-4150 (Layanan cepat)</span>
                 </div>
               </a>
             </li>
@@ -574,7 +596,7 @@ foreach ($menu as $item) {
             <li><a href="#menu">Daftar Menu</a></li>
             <li><a href="#tentang">Tentang Kami</a></li>
             <li><a href="#kontak">Jam Buka & Kontak</a></li>
-            <li><a href="https://wa.me/6281200000000" target="_blank" rel="noopener noreferrer">Pesan Antar</a></li>
+            <li><a href="https://wa.me/6288230634150" target="_blank" rel="noopener noreferrer">Pesan Antar</a></li>
           </ul>
         </nav>
       </div>
@@ -757,37 +779,107 @@ foreach ($menu as $item) {
       const modalOpsiSuhuWadah = document.getElementById('modal-opsi-suhu-wadah');
       const btnOpsiSuhu = document.querySelectorAll('.btn-opsi-suhu');
       const btnWaPesan = document.getElementById('btn-wa-pesan');
+      const btnWaPesanLabel = document.getElementById('btn-wa-pesan-label');
+      const inputJumlahPesanan = document.getElementById('input-jumlah-pesanan');
+      const btnKurangJumlah = document.getElementById('btn-kurang-jumlah');
+      const btnTambahJumlah = document.getElementById('btn-tambah-jumlah');
+      const modalSubtotalTeks = document.getElementById('modal-subtotal-teks');
 
       let itemAktif = null;
       let suhuTerpilih = 'Dingin / Es';
+      let jumlahTerpilih = 1;
+
+      function formatRupiahJs(angka) {
+        return 'Rp ' + Number(angka).toLocaleString('id-ID');
+      }
+
+      function aturOpsiSuhu(suhu) {
+        suhuTerpilih = suhu;
+        btnOpsiSuhu.forEach(function (btn) {
+          const aktif = (btn.dataset.suhu === suhu);
+          btn.classList.toggle('aktif', aktif);
+          btn.setAttribute('aria-checked', String(aktif));
+        });
+        perbaruiTautanWa();
+      }
 
       btnOpsiSuhu.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          btnOpsiSuhu.forEach(function (b) {
-            b.classList.remove('aktif');
-            b.setAttribute('aria-checked', 'false');
-          });
-          btn.classList.add('aktif');
-          btn.setAttribute('aria-checked', 'true');
-          suhuTerpilih = btn.dataset.suhu;
-          perbaruiTautanWa();
+          aturOpsiSuhu(btn.dataset.suhu);
         });
       });
 
+      function aturJumlah(val) {
+        let n = parseInt(val, 10);
+        if (isNaN(n) || n < 1) n = 1;
+        if (n > 99) n = 99;
+        jumlahTerpilih = n;
+        if (inputJumlahPesanan) {
+          inputJumlahPesanan.value = n;
+        }
+        if (btnKurangJumlah) {
+          btnKurangJumlah.disabled = (n <= 1);
+        }
+        perbaruiTautanWa();
+      }
+
+      if (btnKurangJumlah) {
+        btnKurangJumlah.addEventListener('click', function () {
+          aturJumlah(parseInt(inputJumlahPesanan.value, 10) - 1);
+        });
+      }
+
+      if (btnTambahJumlah) {
+        btnTambahJumlah.addEventListener('click', function () {
+          aturJumlah(parseInt(inputJumlahPesanan.value, 10) + 1);
+        });
+      }
+
+      if (inputJumlahPesanan) {
+        inputJumlahPesanan.addEventListener('input', function () {
+          let val = inputJumlahPesanan.value.replace(/\D/g, '');
+          if (val === '') return;
+          aturJumlah(val);
+        });
+        inputJumlahPesanan.addEventListener('change', function () {
+          if (!inputJumlahPesanan.value || parseInt(inputJumlahPesanan.value, 10) < 1) {
+            aturJumlah(1);
+          }
+        });
+      }
+
       function perbaruiTautanWa() {
         if (!itemAktif) return;
-        const noWa = '6281200000000';
+        const noWa = '6288230634150';
         let catatanSuhu = '';
         if (itemAktif.kategori === 'kopi' || itemAktif.kategori === 'non-kopi') {
           catatanSuhu = ' (Penyajian: ' + suhuTerpilih + ')';
         }
-        const pesan = 'Halo Goodayzer, saya ingin memesan menu ' + itemAktif.nama + catatanSuhu + ' - ' + itemAktif.hargaFormat + '. Apakah saat ini tersedia?';
-        btnWaPesan.href = 'https://wa.me/' + noWa + '?text=' + encodeURIComponent(pesan);
+
+        const jumlah = Math.max(1, parseInt(inputJumlahPesanan ? inputJumlahPesanan.value : '1', 10) || 1);
+        const subtotal = (itemAktif.harga || 0) * jumlah;
+        const subtotalFormat = formatRupiahJs(subtotal);
+
+        if (modalSubtotalTeks) {
+          modalSubtotalTeks.textContent = 'Total: ' + subtotalFormat;
+        }
+
+        const teksPorsi = jumlah > 1 ? jumlah + ' porsi ' : '1 porsi ';
+        const pesan = 'Halo Goodayzer, saya ingin memesan ' + teksPorsi + itemAktif.nama + catatanSuhu + ' - Total: ' + subtotalFormat + '. Apakah saat ini tersedia?';
+        const urlWa = 'https://wa.me/' + noWa + '?text=' + encodeURIComponent(pesan);
+
+        if (btnWaPesan) {
+          btnWaPesan.href = urlWa;
+        }
+        if (btnWaPesanLabel) {
+          btnWaPesanLabel.textContent = 'Pesan via WhatsApp (' + jumlah + ' porsi)';
+        }
       }
 
       function bukaDetailMenu(kartu) {
         itemAktif = {
           nama: kartu.dataset.nama,
+          harga: parseInt(kartu.dataset.harga, 10) || 0,
           hargaFormat: kartu.dataset.hargaFormat,
           kategori: kartu.dataset.kategori,
           deskripsi: kartu.dataset.deskripsi,
@@ -798,6 +890,13 @@ foreach ($menu as $item) {
         modalTagKategori.textContent = itemAktif.kategori;
         modalHarga.textContent = itemAktif.hargaFormat;
         modalDeskripsi.textContent = itemAktif.deskripsi;
+
+        // Reset jumlah pesanan ke 1
+        aturJumlah(1);
+
+        // Reset suhu default (Panas jika nama mengandung kata 'panas', selain itu Dingin / Es)
+        const defaultSuhu = itemAktif.nama.toLowerCase().includes('panas') ? 'Panas' : 'Dingin / Es';
+        aturOpsiSuhu(defaultSuhu);
 
         if (modalVisualWadah && modalFoto) {
           if (itemAktif.gambar) {
