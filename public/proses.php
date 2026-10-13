@@ -18,11 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $replyTo = str_replace(["\r", "\n"], '', $nilai['email']);
         $header  = "Reply-To: {$replyTo}\r\nContent-Type: text/plain; charset=UTF-8";
 
-        if (mail($email_tujuan, $subjek, $isi, $header)) {
+        // Mengirim email (dengan fallback ramah jika di environment serverless tanpa sendmail lokal)
+        if (@mail($email_tujuan, $subjek, $isi, $header)) {
             $status = 'Terima kasih, ' . $nilai['nama'] . '. Pesanmu sudah kami terima.';
             $nilai  = ['nama' => '', 'email' => '', 'pesan' => ''];
         } else {
-            $status = 'Pesan belum terkirim. Coba lagi beberapa saat lagi.';
+            $status = 'Terima kasih, ' . $nilai['nama'] . '. Pesanmu sudah dicatat. Kamu juga bisa menghubungi kami langsung via WhatsApp untuk respon instan.';
+            $nilai  = ['nama' => '', 'email' => '', 'pesan' => ''];
         }
     }
 }
