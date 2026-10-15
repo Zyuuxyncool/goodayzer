@@ -617,12 +617,48 @@ h1 span.aksen-amber {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 0.88rem;
 }
 
-.hero-card-footer span {
+.hero-card-jam {
   color: var(--text-secondary);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.hero-view-stat {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: var(--amber-50);
+  color: var(--amber-700) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--amber-200);
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  line-height: 1;
+}
+
+.hero-view-stat .icon-eye-views {
+  width: 15px;
+  height: 15px;
+  color: var(--amber-600);
+  flex-shrink: 0;
+  display: block;
+}
+
+.hero-view-stat span {
+  display: inline;
+  color: inherit;
+}
+
+.hero-view-stat strong {
+  color: var(--espresso-950);
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -1549,6 +1585,45 @@ footer .logo-icon {
   font-size: 0.88rem;
 }
 
+.footer-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(242, 213, 177, 0.25);
+  color: var(--amber-200);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.counter-pill:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--amber-400);
+}
+
+.counter-pill strong {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.counter-pill .counter-icon {
+  color: var(--amber-400);
+  flex-shrink: 0;
+}
+
 .btn-kembali-atas {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -1688,9 +1763,22 @@ footer .logo-icon {
   }
 
   .hero-card-footer {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    gap: 8px;
     font-size: 0.82rem;
+  }
+
+  .hero-card-jam {
+    font-size: 0.78rem;
+  }
+
+  .hero-view-stat {
+    font-size: 0.78rem !important;
+    padding: 3px 8px;
+    gap: 5px !important;
   }
 
   /* Kontrol Menu pada Mobile */

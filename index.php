@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/data.php';
 require __DIR__ . '/proses.php';
+require __DIR__ . '/counter.php';
 
 // Hitung jumlah item per kategori untuk badge filter
 $hitung_kategori = ['semua' => count($menu)];
@@ -207,8 +208,14 @@ foreach ($menu as $item) {
             </li>
           </ul>
           <div class="hero-card-footer">
-            <span>Senin - Minggu: 07.00 - 22.00</span>
-            <a href="#kontak" style="color: var(--amber-600); font-weight: 600; font-size: 0.88rem;">Lihat Lokasi &rarr;</a>
+            <span class="hero-card-jam">Senin – Minggu: 07.00 – 22.00</span>
+            <div class="hero-view-stat" title="Total tayangan website (Page View Counter)">
+              <svg class="icon-eye-views" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span><strong><?= number_format($total_kunjungan, 0, ',', '.') ?></strong> views</span>
+            </div>
           </div>
         </aside>
       </div>
@@ -603,6 +610,20 @@ foreach ($menu as $item) {
 
       <div class="footer-bawah">
         <small>&copy; <?= date('Y') ?> Goodayzer Coffee Shop. Semua hak cipta dilindungi.</small>
+
+        <!-- Page View Counter (Fitur PHP Native) -->
+        <div class="footer-counter" title="Total akumulasi tayangan halaman website (PHP Page View Counter)">
+          <span class="counter-label">Page View Counter:</span>
+          <div class="counter-pill">
+            <svg class="counter-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <strong><?= number_format($total_kunjungan, 0, ',', '.') ?></strong>
+            <span class="counter-unit">Views</span>
+          </div>
+        </div>
+
         <a href="#atas" class="btn-kembali-atas">
           <span>Kembali ke atas</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
